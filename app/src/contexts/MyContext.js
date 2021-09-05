@@ -4,7 +4,7 @@ export const MyContext = createContext();
 
 // Define the base URL
 const Axios = axios.create({
-    baseURL: 'http://localhost/php-login-registration-api/',
+    baseURL: 'http://localhost/AdminApi/',
 });
 
 class MyContextProvider extends Component{

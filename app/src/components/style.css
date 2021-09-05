@@ -1,0 +1,40 @@
+.ol-zoom {
+    top: 2em !important;
+    left: 0.1em !important;
+}
+
+.ol-search {
+    top: 0.1em !important;
+    left: 4em !important;
+}
+
+.ol-viewport .ol-scale {
+    left: 3em !important;
+    bottom: 0.8em !important;
+}
+
+.ol-control.ol-progress-bar > .ol-bar {
+    background-color: rgba(13,110,253,1) !important;
+ }
+
+ .ol-control button {
+    background-color: rgba(13,110,253,1) !important;
+}
+
+.ol-control button:hover {
+    background: white !important;
+    color: rgba(13,110,253, 1) !important;
+}
+
+.ol-viewport .ol-control.ol-progress-bar > .ol-waiting {
+    color: rgba(13,110,253, 1) !important;
+    font-size: 10em !important;
+}
+
+button{
+    cursor: pointer;
+}
+
+.ol-control i {
+    cursor: pointer !important;
+}

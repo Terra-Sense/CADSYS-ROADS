@@ -1,5 +1,6 @@
 import React, {useContext, useState} from 'react'
 import {MyContext} from '../contexts/MyContext'
+import logo from "../images/logo.jpeg"
 
 function Login(){
 
@@ -58,27 +59,56 @@ function Login(){
     }
 
     return(
-        <div className="_loginRegister">
-            <h1>Login</h1>
-            <form  onSubmit={submitForm} noValidate>
-                <div className="form-control">
-                    <label>Email</label>
-                    <input name="email" type="email" required placeholder="Enter your email" value={state.userInfo.email} onChange={onChangeValue} />
+        <>
+            <div className="maincontainer">
+                <nav className="navbar navbar-expand-lg navbar-dark bg-dark sticky-top d-flex justify-content-between ">
+                    <div className="navbar-nav col-2 align-items-start ">
+                        <div className="text-white bg_color_primary_light rounded-circle p-2">
+                            <img width={30} height={30} src={logo} alt="logo" />
+                        </div>
+                    </div>
+
+                    <div className="col-4 justify-content-center">
+                        <div className="navbar-nav ml-auto text-white">
+                            CADSYS - ROADS
+                        </div>
+                    </div>
+
+                    <div className="justify-content-center" id="navbarNavDropdown">
+                        <div className="navbar-nav ml-auto text-white">
+                            LOGO
+                        </div>
+                    </div>
+                </nav>
+                <div className="container mb-5 mt-5">
+                    <div className="_loginRegister">
+                        <h1>Login</h1>
+                        <form onSubmit={submitForm} noValidate>
+                            <div className="form-control">
+                                <label>Email</label>
+                                <input name="email" type="email" required placeholder="Enter your email" value={state.userInfo.email} onChange={onChangeValue} />
+                            </div>
+                            <div className="form-control">
+                                <label>PassWord</label>
+                                <input name="password" type="password" required placeholder="Enter your password" value={state.userInfo.password} onChange={onChangeValue} />
+                            </div>
+                            {errorMsg}
+                            {successMsg}
+                            <div className="form-control">
+                                <button type="submit">Login</button>
+                            </div>
+                        </form>
+                        <div className="form-control _navBtn">
+                            <button onClick={toggleNav}>Register</button>
+                        </div>
+                    </div>
                 </div>
-                <div className="form-control">
-                    <label>PassWord</label>
-                    <input name="password" type="password" required placeholder="Enter your password" value={state.userInfo.password} onChange={onChangeValue} />
-                </div>
-                {errorMsg}
-                {successMsg}
-                <div className="form-control">
-                    <button type="submit">Login</button>
-                </div>
-            </form>
-            <div className="_navBtn">
-                <button onClick={toggleNav}>Register</button>
+            </div >
+            <div style={{ position: 'absolute', bottom: 0, width: "100vw", textAlign: 'center', background: "#212529", color: "white", padding: "3px", fontSize: "small" }}>
+                If you experience difficulty viewing or accessing the documents provided on this site, or navigating this application's table features, using any assistive technology please contact the Disabled Services Division at insert (TTY) to request an
+                accommodation. Version 1.0 2021
             </div>
-        </div>
+        </>
     );
 }
 
