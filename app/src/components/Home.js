@@ -17,6 +17,7 @@ import { defaults as defaultControls } from 'ol/control';
 import VectorSource from "ol/source/Vector";
 import VectorLayer from "ol/layer/Vector";
 import {
+    Icon,
     Circle as CircleStyle,
     Fill,
     RegularShape,
@@ -82,279 +83,56 @@ let rotation = 0;
 let selectedBaseMap;
 let setselectedFeature = [];
 
-let anexe_and = new VectorLayer({
-    title: "Anexe And",
-    visible: false,
-    source: new VectorSource({
-        format: new GeoJSON(),
-        url: function (extent) {
-            return (
-                'http://localhost/geoserver/wfs?service=WFS&' +
-                'version=1.1.0&request=GetFeature&typename=Alexanduru:anexe_and&' +
-                'outputFormat=application/json&srsname=EPSG:31700&' +
-                'bbox=' +
-                extent.join(',') +
-                ',EPSG:31700'
-            );
-        },
-        strategy: bboxStrategy,
-    })
-}), borne_estimate = new VectorLayer({
-    title: "Borne Estimate",
-    visible: false,
-    source: new VectorSource({
-        format: new GeoJSON(),
-        url: function (extent) {
-            return (
-                'http://localhost/geoserver/wfs?service=WFS&' +
-                'version=1.1.0&request=GetFeature&typename=Alexanduru:borne_estimate&' +
-                'outputFormat=application/json&srsname=EPSG:31700&' +
-                'bbox=' +
-                extent.join(',') +
-                ',EPSG:31700'
-            );
-        },
-        strategy: bboxStrategy,
-    })
-}), borne_existente = new VectorLayer({
-    title: "Borne Existente",
-    visible: false,
-    source: new VectorSource({
-        format: new GeoJSON(),
-        url: function (extent) {
-            return (
-                'http://localhost/geoserver/wfs?service=WFS&' +
-                'version=1.1.0&request=GetFeature&typename=Alexanduru:borne_existente&' +
-                'outputFormat=application/json&srsname=EPSG:31700&' +
-                'bbox=' +
-                extent.join(',') +
-                ',EPSG:31700'
-            );
-        },
-        strategy: bboxStrategy,
-    })
-}), imbracaminte_drum = new VectorLayer({
-    title: "Imbracaminte Drum",
-    visible: false,
-    source: new VectorSource({
-        format: new GeoJSON(),
-        url: function (extent) {
-            return (
-                'http://localhost/geoserver/wfs?service=WFS&' +
-                'version=1.1.0&request=GetFeature&typename=Alexanduru:imbracaminte_drum&' +
-                'outputFormat=application/json&srsname=EPSG:31700&' +
-                'bbox=' +
-                extent.join(',') +
-                ',EPSG:31700'
-            );
-        },
-        strategy: bboxStrategy,
-    })
-}), indicatoare_rutiere = new VectorLayer({
-    title: "Indicatoare Rutiere",
-    visible: false,
-    source: new VectorSource({
-        format: new GeoJSON(),
-        url: function (extent) {
-            return (
-                'http://localhost/geoserver/wfs?service=WFS&' +
-                'version=1.1.0&request=GetFeature&typename=Alexanduru:indicatoare_rutiere&' +
-                'outputFormat=application/json&srsname=EPSG:31700&' +
-                'bbox=' +
-                extent.join(',') +
-                ',EPSG:31700'
-            );
-        },
-        strategy: bboxStrategy,
-    })
-}), intersectii_cfr = new VectorLayer({
-    title: "Intersectii Cfr",
-    visible: false,
-    source: new VectorSource({
-        format: new GeoJSON(),
-        url: function (extent) {
-            return (
-                'http://localhost/geoserver/wfs?service=WFS&' +
-                'version=1.1.0&request=GetFeature&typename=Alexanduru:intersectii_cfr&' +
-                'outputFormat=application/json&srsname=EPSG:31700&' +
-                'bbox=' +
-                extent.join(',') +
-                ',EPSG:31700'
-            );
-        },
-        strategy: bboxStrategy,
-    })
-}), intersectii_dr = new VectorLayer({
-    title: "Intersectii Dr",
-    visible: false,
-    source: new VectorSource({
-        format: new GeoJSON(),
-        url: function (extent) {
-            return (
-                'http://localhost/geoserver/wfs?service=WFS&' +
-                'version=1.1.0&request=GetFeature&typename=Alexanduru:intersectii_dr&' +
-                'outputFormat=application/json&srsname=EPSG:31700&' +
-                'bbox=' +
-                extent.join(',') +
-                ',EPSG:31700'
-            );
-        },
-        strategy: bboxStrategy,
-    })
-}), limite_pug_bacau = new VectorLayer({
-    title: "Limite Pug Bacau",
-    visible: false,
-    source: new VectorSource({
-        format: new GeoJSON(),
-        url: function (extent) {
-            return (
-                'http://localhost/geoserver/wfs?service=WFS&' +
-                'version=1.1.0&request=GetFeature&typename=Alexanduru:limite_pug_bacau&' +
-                'outputFormat=application/json&srsname=EPSG:31700&' +
-                'bbox=' +
-                extent.join(',') +
-                ',EPSG:31700'
-            );
-        },
-        strategy: bboxStrategy,
-    })
-}), limite_uat_bacau = new VectorLayer({
-    title: "Limite Uat Bacau",
-    visible: false,
-    source: new VectorSource({
-        format: new GeoJSON(),
-        url: function (extent) {
-            return (
-                'http://localhost/geoserver/wfs?service=WFS&' +
-                'version=1.1.0&request=GetFeature&typename=Alexanduru:limite_uat_bacau&' +
-                'outputFormat=application/json&srsname=EPSG:31700&' +
-                'bbox=' +
-                extent.join(',') +
-                ',EPSG:31700'
-            );
-        },
-        strategy: bboxStrategy,
-    })
-}), localitati_traversate = new VectorLayer({
-    title: "Localitati Traversate",
-    visible: false,
-    source: new VectorSource({
-        format: new GeoJSON(),
-        url: function (extent) {
-            return (
-                'http://localhost/geoserver/wfs?service=WFS&' +
-                'version=1.1.0&request=GetFeature&typename=Alexanduru:localitati_traversate&' +
-                'outputFormat=application/json&srsname=EPSG:31700&' +
-                'bbox=' +
-                extent.join(',') +
-                ',EPSG:31700'
-            );
-        },
-        strategy: bboxStrategy,
-    })
-}), parapete = new VectorLayer({
-    title: "Parapete",
-    visible: false,
-    source: new VectorSource({
-        format: new GeoJSON(),
-        url: function (extent) {
-            return (
-                'http://localhost/geoserver/wfs?service=WFS&' +
-                'version=1.1.0&request=GetFeature&typename=Alexanduru:parapete&' +
-                'outputFormat=application/json&srsname=EPSG:31700&' +
-                'bbox=' +
-                extent.join(',') +
-                ',EPSG:31700'
-            );
-        },
-        strategy: bboxStrategy,
-    })
-}), podete = new VectorLayer({
-    title: "Podete",
-    visible: false,
-    source: new VectorSource({
-        format: new GeoJSON(),
-        url: function (extent) {
-            return (
-                'http://localhost/geoserver/wfs?service=WFS&' +
-                'version=1.1.0&request=GetFeature&typename=Alexanduru:podete&' +
-                'outputFormat=application/json&srsname=EPSG:31700&' +
-                'bbox=' +
-                extent.join(',') +
-                ',EPSG:31700'
-            );
-        },
-        strategy: bboxStrategy,
-    })
-}), poduri_ = new VectorLayer({
-    title: "Poduri_",
-    visible: false,
-    source: new VectorSource({
-        format: new GeoJSON(),
-        url: function (extent) {
-            return (
-                'http://localhost/geoserver/wfs?service=WFS&' +
-                'version=1.1.0&request=GetFeature&typename=Alexanduru:poduri_&' +
-                'outputFormat=application/json&srsname=EPSG:31700&' +
-                'bbox=' +
-                extent.join(',') +
-                ',EPSG:31700'
-            );
-        },
-        strategy: bboxStrategy,
-    })
-}), santuri = new VectorLayer({
-    title: "Santuri",
-    visible: false,
-    source: new VectorSource({
-        format: new GeoJSON(),
-        url: function (extent) {
-            return (
-                'http://localhost/geoserver/wfs?service=WFS&' +
-                'version=1.1.0&request=GetFeature&typename=Alexanduru:santuri&' +
-                'outputFormat=application/json&srsname=EPSG:31700&' +
-                'bbox=' +
-                extent.join(',') +
-                ',EPSG:31700'
-            );
-        },
-        strategy: bboxStrategy,
-    })
-}), traseu_info = new VectorLayer({
-    title: "Traseu Info",
-    visible: false,
-    source: new VectorSource({
-        format: new GeoJSON(),
-        url: function (extent) {
-            return (
-                'http://localhost/geoserver/wfs?service=WFS&' +
-                'version=1.1.0&request=GetFeature&typename=Alexanduru:traseu_info&' +
-                'outputFormat=application/json&srsname=EPSG:31700&' +
-                'bbox=' +
-                extent.join(',') +
-                ',EPSG:31700'
-            );
-        },
-        strategy: bboxStrategy,
-    })
-}), zid_sprijin = new VectorLayer({
-    title: "Zid Sprijin",
-    visible: false,
-    source: new VectorSource({
-        format: new GeoJSON(),
-        url: function (extent) {
-            return (
-                'http://localhost/geoserver/wfs?service=WFS&' +
-                'version=1.1.0&request=GetFeature&typename=Alexanduru:zid_sprijin&' +
-                'outputFormat=application/json&srsname=EPSG:31700&' +
-                'bbox=' +
-                extent.join(',') +
-                ',EPSG:31700'
-            );
-        },
-        strategy: bboxStrategy,
-    })
-});
+const layersStyle = function (e) {
+    if (e.getId().indexOf("borne_estimate") !== -1) {
+        return new Style({
+            image: new Icon({
+                src: './icons/1.png',
+                scale: [0.05, 0.05],
+            })
+        })
+    }
+    if (e.getId().indexOf("borne_existente") !== -1) {
+        return new Style({
+            image: new Icon({
+                src: './icons/2.png',
+                scale: [0.05, 0.05],
+            })
+        })
+    }
+    if (e.getId().indexOf("indicatoare_rutiere") !== -1) {
+        return new Style({
+            image: new Icon({
+                src: './icons/3.png',
+                scale: [0.05, 0.05],
+            })
+        })
+    }
+    if (e.getId().indexOf("intersectii_cfr") !== -1) {
+        return new Style({
+            image: new Icon({
+                src: './icons/4.png',
+                scale: [0.05, 0.05],
+            })
+        })
+    }
+    if (e.getId().indexOf("intersectii_dr") !== -1) {
+        return new Style({
+            image: new Icon({
+                src: './icons/5.png',
+                scale: [0.05, 0.05],
+            })
+        })
+    }
+    if (e.getId().indexOf("podete") !== -1) {
+        return new Style({
+            image: new Icon({
+                src: './icons/6.png',
+                scale: [0.05, 0.05],
+            })
+        })
+    }
+}
 
 const hoverStyle = function (e) {
     try {
@@ -472,6 +250,402 @@ const clickStyle = function (e) {
         }
     } catch (e) { }
 }
+
+let acostamente = new VectorLayer({
+    title: "Acostamente",
+    visible: false,
+    source: new VectorSource({
+        format: new GeoJSON(),
+        url: function (extent) {
+            return (
+                'http://localhost/geoserver/wfs?service=WFS&' +
+                'version=1.1.0&request=GetFeature&typename=Alexanduru:acostamente&' +
+                'outputFormat=application/json&srsname=EPSG:31700&' +
+                'bbox=' +
+                extent.join(',') +
+                ',EPSG:31700'
+            );
+        },
+        strategy: bboxStrategy,
+    }),
+    style: new Style({
+        // fill: new Fill({
+        //     color: 'rgba(255, 255, 255, 0.5)',
+        // }),
+        stroke: new Stroke({
+            color: '#ffcc33',
+            width: 2,
+        })
+    })
+}),anexe_and = new VectorLayer({
+    title: "Anexe And",
+    visible: false,
+    source: new VectorSource({
+        format: new GeoJSON(),
+        url: function (extent) {
+            return (
+                'http://localhost/geoserver/wfs?service=WFS&' +
+                'version=1.1.0&request=GetFeature&typename=Alexanduru:anexe_and&' +
+                'outputFormat=application/json&srsname=EPSG:31700&' +
+                'bbox=' +
+                extent.join(',') +
+                ',EPSG:31700'
+            );
+        },
+        strategy: bboxStrategy,
+    }),
+    style: new Style({
+        fill: new Fill({
+            color: 'rgba(255, 255, 255, 0.5)',
+        }),
+        stroke: new Stroke({
+            color: '#ff5599',
+            width: 2,
+        })
+    })
+}), borne_estimate = new VectorLayer({
+    title: "Borne Estimate",
+    visible: false,
+    source: new VectorSource({
+        format: new GeoJSON(),
+        url: function (extent) {
+            return (
+                'http://localhost/geoserver/wfs?service=WFS&' +
+                'version=1.1.0&request=GetFeature&typename=Alexanduru:borne_estimate&' +
+                'outputFormat=application/json&srsname=EPSG:31700&' +
+                'bbox=' +
+                extent.join(',') +
+                ',EPSG:31700'
+            );
+        },
+        strategy: bboxStrategy,
+    }),
+    style: layersStyle
+}), borne_existente = new VectorLayer({
+    title: "Borne Existente",
+    visible: false,
+    source: new VectorSource({
+        format: new GeoJSON(),
+        url: function (extent) {
+            return (
+                'http://localhost/geoserver/wfs?service=WFS&' +
+                'version=1.1.0&request=GetFeature&typename=Alexanduru:borne_existente&' +
+                'outputFormat=application/json&srsname=EPSG:31700&' +
+                'bbox=' +
+                extent.join(',') +
+                ',EPSG:31700'
+            );
+        },
+        strategy: bboxStrategy,
+    }),
+    style: layersStyle
+}), imbracaminte_drum = new VectorLayer({
+    title: "Imbracaminte Drum",
+    visible: false,
+    source: new VectorSource({
+        format: new GeoJSON(),
+        url: function (extent) {
+            return (
+                'http://localhost/geoserver/wfs?service=WFS&' +
+                'version=1.1.0&request=GetFeature&typename=Alexanduru:imbracaminte_drum&' +
+                'outputFormat=application/json&srsname=EPSG:31700&' +
+                'bbox=' +
+                extent.join(',') +
+                ',EPSG:31700'
+            );
+        },
+        strategy: bboxStrategy,
+    }),
+    style: new Style({
+        // fill: new Fill({
+        //     color: 'rgba(255, 255, 255, 0.5)',
+        // }),
+        stroke: new Stroke({
+            color: '#ff0011',
+            width: 2,
+        })
+    })
+}), indicatoare_rutiere = new VectorLayer({
+    title: "Indicatoare Rutiere",
+    visible: false,
+    source: new VectorSource({
+        format: new GeoJSON(),
+        url: function (extent) {
+            return (
+                'http://localhost/geoserver/wfs?service=WFS&' +
+                'version=1.1.0&request=GetFeature&typename=Alexanduru:indicatoare_rutiere&' +
+                'outputFormat=application/json&srsname=EPSG:31700&' +
+                'bbox=' +
+                extent.join(',') +
+                ',EPSG:31700'
+            );
+        },
+        strategy: bboxStrategy,
+    }),
+    style: layersStyle
+}), intersectii_cfr = new VectorLayer({
+    title: "Intersectii Cfr",
+    visible: false,
+    source: new VectorSource({
+        format: new GeoJSON(),
+        url: function (extent) {
+            return (
+                'http://localhost/geoserver/wfs?service=WFS&' +
+                'version=1.1.0&request=GetFeature&typename=Alexanduru:intersectii_cfr&' +
+                'outputFormat=application/json&srsname=EPSG:31700&' +
+                'bbox=' +
+                extent.join(',') +
+                ',EPSG:31700'
+            );
+        },
+        strategy: bboxStrategy,
+    }),
+    style: layersStyle
+}), intersectii_dr = new VectorLayer({
+    title: "Intersectii Dr",
+    visible: false,
+    source: new VectorSource({
+        format: new GeoJSON(),
+        url: function (extent) {
+            return (
+                'http://localhost/geoserver/wfs?service=WFS&' +
+                'version=1.1.0&request=GetFeature&typename=Alexanduru:intersectii_dr&' +
+                'outputFormat=application/json&srsname=EPSG:31700&' +
+                'bbox=' +
+                extent.join(',') +
+                ',EPSG:31700'
+            );
+        },
+        strategy: bboxStrategy,
+    }),
+    style: layersStyle
+}), limite_pug_bacau = new VectorLayer({
+    title: "Limite Pug Bacau",
+    visible: false,
+    source: new VectorSource({
+        format: new GeoJSON(),
+        url: function (extent) {
+            return (
+                'http://localhost/geoserver/wfs?service=WFS&' +
+                'version=1.1.0&request=GetFeature&typename=Alexanduru:limite_pug_bacau&' +
+                'outputFormat=application/json&srsname=EPSG:31700&' +
+                'bbox=' +
+                extent.join(',') +
+                ',EPSG:31700'
+            );
+        },
+        strategy: bboxStrategy,
+    }),
+    style: new Style({
+        fill: new Fill({
+            color: 'rgba(255, 255, 255, 0.5)',
+        }),
+        stroke: new Stroke({
+            color: '#f0f0f0',
+            width: 2,
+        })
+    })
+}), limite_uat_bacau = new VectorLayer({
+    title: "Limite Uat Bacau",
+    visible: false,
+    source: new VectorSource({
+        format: new GeoJSON(),
+        url: function (extent) {
+            return (
+                'http://localhost/geoserver/wfs?service=WFS&' +
+                'version=1.1.0&request=GetFeature&typename=Alexanduru:limite_uat_bacau&' +
+                'outputFormat=application/json&srsname=EPSG:31700&' +
+                'bbox=' +
+                extent.join(',') +
+                ',EPSG:31700'
+            );
+        },
+        strategy: bboxStrategy,
+    }),
+    style: new Style({
+        fill: new Fill({
+            color: 'rgba(255, 255, 255, 0.5)',
+        }),
+        stroke: new Stroke({
+            color: '#0f0f0f',
+            width: 2,
+        })
+    })
+}), localitati_traversate = new VectorLayer({
+    title: "Localitati Traversate",
+    visible: false,
+    source: new VectorSource({
+        format: new GeoJSON(),
+        url: function (extent) {
+            return (
+                'http://localhost/geoserver/wfs?service=WFS&' +
+                'version=1.1.0&request=GetFeature&typename=Alexanduru:localitati_traversate&' +
+                'outputFormat=application/json&srsname=EPSG:31700&' +
+                'bbox=' +
+                extent.join(',') +
+                ',EPSG:31700'
+            );
+        },
+        strategy: bboxStrategy,
+    }),
+    style: new Style({
+        // fill: new Fill({
+        //     color: 'rgba(255, 255, 255, 0.5)',
+        // }),
+        stroke: new Stroke({
+            color: '#ff00ff',
+            width: 2,
+        })
+    })
+}), parapete = new VectorLayer({
+    title: "Parapete",
+    visible: false,
+    source: new VectorSource({
+        format: new GeoJSON(),
+        url: function (extent) {
+            return (
+                'http://localhost/geoserver/wfs?service=WFS&' +
+                'version=1.1.0&request=GetFeature&typename=Alexanduru:parapete&' +
+                'outputFormat=application/json&srsname=EPSG:31700&' +
+                'bbox=' +
+                extent.join(',') +
+                ',EPSG:31700'
+            );
+        },
+        strategy: bboxStrategy,
+    }),
+    style: new Style({
+        // fill: new Fill({
+        //     color: 'rgba(255, 255, 255, 0.5)',
+        // }),
+        stroke: new Stroke({
+            color: '#00ffff',
+            width: 2,
+        })
+    })
+}), podete = new VectorLayer({
+    title: "Podete",
+    visible: false,
+    source: new VectorSource({
+        format: new GeoJSON(),
+        url: function (extent) {
+            return (
+                'http://localhost/geoserver/wfs?service=WFS&' +
+                'version=1.1.0&request=GetFeature&typename=Alexanduru:podete&' +
+                'outputFormat=application/json&srsname=EPSG:31700&' +
+                'bbox=' +
+                extent.join(',') +
+                ',EPSG:31700'
+            );
+        },
+        strategy: bboxStrategy,
+    }),
+    style: layersStyle
+}), poduri_ = new VectorLayer({
+    title: "Poduri_",
+    visible: false,
+    source: new VectorSource({
+        format: new GeoJSON(),
+        url: function (extent) {
+            return (
+                'http://localhost/geoserver/wfs?service=WFS&' +
+                'version=1.1.0&request=GetFeature&typename=Alexanduru:poduri_&' +
+                'outputFormat=application/json&srsname=EPSG:31700&' +
+                'bbox=' +
+                extent.join(',') +
+                ',EPSG:31700'
+            );
+        },
+        strategy: bboxStrategy,
+    }),
+    style: new Style({
+        fill: new Fill({
+            color: 'rgba(255, 255, 255, 0.5)',
+        }),
+        stroke: new Stroke({
+            color: '#ffff00',
+            width: 2,
+        })
+    })
+}), santuri = new VectorLayer({
+    title: "Santuri",
+    visible: false,
+    source: new VectorSource({
+        format: new GeoJSON(),
+        url: function (extent) {
+            return (
+                'http://localhost/geoserver/wfs?service=WFS&' +
+                'version=1.1.0&request=GetFeature&typename=Alexanduru:santuri&' +
+                'outputFormat=application/json&srsname=EPSG:31700&' +
+                'bbox=' +
+                extent.join(',') +
+                ',EPSG:31700'
+            );
+        },
+        strategy: bboxStrategy,
+    }),
+    style: new Style({
+        // fill: new Fill({
+        //     color: 'rgba(255, 255, 255, 0.5)',
+        // }),
+        stroke: new Stroke({
+            color: '#ff0000',
+            width: 2,
+        })
+    })
+}), traseu_info = new VectorLayer({
+    title: "Traseu Info",
+    visible: false,
+    source: new VectorSource({
+        format: new GeoJSON(),
+        url: function (extent) {
+            return (
+                'http://localhost/geoserver/wfs?service=WFS&' +
+                'version=1.1.0&request=GetFeature&typename=Alexanduru:traseu_info&' +
+                'outputFormat=application/json&srsname=EPSG:31700&' +
+                'bbox=' +
+                extent.join(',') +
+                ',EPSG:31700'
+            );
+        },
+        strategy: bboxStrategy,
+    }),
+    style: new Style({
+        // fill: new Fill({
+        //     color: 'rgba(255, 255, 255, 0.5)',
+        // }),
+        stroke: new Stroke({
+            color: '#00ff00',
+            width: 2,
+        })
+    })
+}), zid_sprijin = new VectorLayer({
+    title: "Zid Sprijin",
+    visible: false,
+    source: new VectorSource({
+        format: new GeoJSON(),
+        url: function (extent) {
+            return (
+                'http://localhost/geoserver/wfs?service=WFS&' +
+                'version=1.1.0&request=GetFeature&typename=Alexanduru:zid_sprijin&' +
+                'outputFormat=application/json&srsname=EPSG:31700&' +
+                'bbox=' +
+                extent.join(',') +
+                ',EPSG:31700'
+            );
+        },
+        strategy: bboxStrategy,
+    }),
+    style: new Style({
+        // fill: new Fill({
+        //     color: 'rgba(255, 255, 255, 0.5)',
+        // }),
+        stroke: new Stroke({
+            color: '#0000ff',
+            width: 2,
+        })
+    })
+});
 
 const style = new Style({
     fill: new Fill({
@@ -698,7 +872,8 @@ function Home() {
                 imbracaminte_drum,
                 borne_existente,
                 borne_estimate,
-                anexe_and
+                anexe_and,
+                acostamente
             ]
         })
 
