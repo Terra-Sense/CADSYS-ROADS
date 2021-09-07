@@ -61,7 +61,7 @@ function Login(){
     return(
         <>
             <div className="maincontainer">
-                <nav className="navbar navbar-expand-lg navbar-dark bg-dark sticky-top d-flex justify-content-between ">
+                <nav className="navbar navbar-expand-lg navbar-primary bg-primary sticky-top d-flex justify-content-between ">
                     <div className="navbar-nav col-2 align-items-start ">
                         <div className="text-white bg_color_primary_light rounded-circle p-2">
                             <img width={30} height={30} src={logo} alt="logo" />
@@ -104,9 +104,8 @@ function Login(){
                     </div>
                 </div>
             </div >
-            <div style={{ position: 'absolute', bottom: 0, width: "100vw", textAlign: 'center', background: "#212529", color: "white", padding: "3px", fontSize: "small" }}>
-                If you experience difficulty viewing or accessing the documents provided on this site, or navigating this application's table features, using any assistive technology please contact the Disabled Services Division at insert (TTY) to request an
-                accommodation. Version 1.0 2021
+            <div style={{ position: 'absolute', bottom: 0, width: "100vw", textAlign: 'center', background: "#0d6efd", color: "white", padding: "3px", fontSize: "small" }}>
+                © Copyright 2021-2022
             </div>
         </>
     );

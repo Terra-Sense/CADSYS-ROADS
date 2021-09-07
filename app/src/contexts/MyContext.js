@@ -4,7 +4,7 @@ export const MyContext = createContext();
 
 // Define the base URL
 const Axios = axios.create({
-    baseURL: 'http://localhost/AdminApi/',
+    baseURL: '../AdminApi/',
 });
 
 class MyContextProvider extends Component{
@@ -72,7 +72,7 @@ class MyContextProvider extends Component{
             Axios.defaults.headers.common['Authorization'] = 'bearer '+loginToken;
 
             // Fetching the user information
-            const {data} = await Axios.get('user-info.php');
+            const {data} = await Axios.get('userinfo.php');
 
             // If user information is successfully received
             if(data.success && data.user){

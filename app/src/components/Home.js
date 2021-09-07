@@ -1,6 +1,7 @@
 import React, { useContext, useState, useEffect, useRef } from 'react'
 import { MyContext } from '../contexts/MyContext'
 import 'bootstrap/dist/css/bootstrap.min.css';
+import axios from 'axios';
 
 // Importing the Login & Register Componet
 import Login from './Login'
@@ -66,6 +67,11 @@ import 'ol/ol.css';
 import 'ol-ext/dist/ol-ext.css'
 import './style.css'
 
+// Define the base URL
+const Axios = axios.create({
+    baseURL: 'http://localhost/AdminApi/',
+});
+
 var mapboxKey = "pk.eyJ1IjoiZGh5ZmIiLCJhIjoiY2o4M3F6MzJpMDBoejMybXBhZGF4aXJjOCJ9.rqAE8kSRfPbAdypH3Ydx-g";
 
 proj4.defs("EPSG:31700", "+proj=sterea +lat_0=46 +lon_0=25 +k=0.99975 +x_0=500000 +y_0=500000 +ellps=krass +units=m +no_defs");
@@ -77,7 +83,7 @@ let layers = [];
 let basemaps;
 let draw;
 let initialMap;
-let zoom = 12;
+let zoom = 13;
 let center = olProj.fromLonLat([27.0336212, 46.3428481], proj31700);
 let rotation = 0;
 let selectedBaseMap;
@@ -256,16 +262,7 @@ let acostamente = new VectorLayer({
     visible: false,
     source: new VectorSource({
         format: new GeoJSON(),
-        url: function (extent) {
-            return (
-                'http://localhost/geoserver/wfs?service=WFS&' +
-                'version=1.1.0&request=GetFeature&typename=Alexanduru:acostamente&' +
-                'outputFormat=application/json&srsname=EPSG:31700&' +
-                'bbox=' +
-                extent.join(',') +
-                ',EPSG:31700'
-            );
-        },
+        url: 'https://cadsysdj.terra-apps.com/AdminApi/wfs.php?layername=acostamente',
         strategy: bboxStrategy,
     }),
     style: new Style({
@@ -277,21 +274,12 @@ let acostamente = new VectorLayer({
             width: 2,
         })
     })
-}),anexe_and = new VectorLayer({
+}), anexe_and = new VectorLayer({
     title: "Anexe And",
     visible: false,
     source: new VectorSource({
         format: new GeoJSON(),
-        url: function (extent) {
-            return (
-                'http://localhost/geoserver/wfs?service=WFS&' +
-                'version=1.1.0&request=GetFeature&typename=Alexanduru:anexe_and&' +
-                'outputFormat=application/json&srsname=EPSG:31700&' +
-                'bbox=' +
-                extent.join(',') +
-                ',EPSG:31700'
-            );
-        },
+        url: 'https://cadsysdj.terra-apps.com/AdminApi/wfs.php?layername=anexe_and',
         strategy: bboxStrategy,
     }),
     style: new Style({
@@ -308,16 +296,7 @@ let acostamente = new VectorLayer({
     visible: false,
     source: new VectorSource({
         format: new GeoJSON(),
-        url: function (extent) {
-            return (
-                'http://localhost/geoserver/wfs?service=WFS&' +
-                'version=1.1.0&request=GetFeature&typename=Alexanduru:borne_estimate&' +
-                'outputFormat=application/json&srsname=EPSG:31700&' +
-                'bbox=' +
-                extent.join(',') +
-                ',EPSG:31700'
-            );
-        },
+        url: 'https://cadsysdj.terra-apps.com/AdminApi/wfs.php?layername=borne_estimate',
         strategy: bboxStrategy,
     }),
     style: layersStyle
@@ -326,16 +305,7 @@ let acostamente = new VectorLayer({
     visible: false,
     source: new VectorSource({
         format: new GeoJSON(),
-        url: function (extent) {
-            return (
-                'http://localhost/geoserver/wfs?service=WFS&' +
-                'version=1.1.0&request=GetFeature&typename=Alexanduru:borne_existente&' +
-                'outputFormat=application/json&srsname=EPSG:31700&' +
-                'bbox=' +
-                extent.join(',') +
-                ',EPSG:31700'
-            );
-        },
+        url: 'https://cadsysdj.terra-apps.com/AdminApi/wfs.php?layername=borne_existente',
         strategy: bboxStrategy,
     }),
     style: layersStyle
@@ -344,16 +314,7 @@ let acostamente = new VectorLayer({
     visible: false,
     source: new VectorSource({
         format: new GeoJSON(),
-        url: function (extent) {
-            return (
-                'http://localhost/geoserver/wfs?service=WFS&' +
-                'version=1.1.0&request=GetFeature&typename=Alexanduru:imbracaminte_drum&' +
-                'outputFormat=application/json&srsname=EPSG:31700&' +
-                'bbox=' +
-                extent.join(',') +
-                ',EPSG:31700'
-            );
-        },
+        url: 'https://cadsysdj.terra-apps.com/AdminApi/wfs.php?layername=imbracaminte_drum',
         strategy: bboxStrategy,
     }),
     style: new Style({
@@ -370,16 +331,7 @@ let acostamente = new VectorLayer({
     visible: false,
     source: new VectorSource({
         format: new GeoJSON(),
-        url: function (extent) {
-            return (
-                'http://localhost/geoserver/wfs?service=WFS&' +
-                'version=1.1.0&request=GetFeature&typename=Alexanduru:indicatoare_rutiere&' +
-                'outputFormat=application/json&srsname=EPSG:31700&' +
-                'bbox=' +
-                extent.join(',') +
-                ',EPSG:31700'
-            );
-        },
+        url: 'https://cadsysdj.terra-apps.com/AdminApi/wfs.php?layername=indicatoare_rutiere',
         strategy: bboxStrategy,
     }),
     style: layersStyle
@@ -388,16 +340,7 @@ let acostamente = new VectorLayer({
     visible: false,
     source: new VectorSource({
         format: new GeoJSON(),
-        url: function (extent) {
-            return (
-                'http://localhost/geoserver/wfs?service=WFS&' +
-                'version=1.1.0&request=GetFeature&typename=Alexanduru:intersectii_cfr&' +
-                'outputFormat=application/json&srsname=EPSG:31700&' +
-                'bbox=' +
-                extent.join(',') +
-                ',EPSG:31700'
-            );
-        },
+        url: 'https://cadsysdj.terra-apps.com/AdminApi/wfs.php?layername=intersectii_cfr',
         strategy: bboxStrategy,
     }),
     style: layersStyle
@@ -406,16 +349,7 @@ let acostamente = new VectorLayer({
     visible: false,
     source: new VectorSource({
         format: new GeoJSON(),
-        url: function (extent) {
-            return (
-                'http://localhost/geoserver/wfs?service=WFS&' +
-                'version=1.1.0&request=GetFeature&typename=Alexanduru:intersectii_dr&' +
-                'outputFormat=application/json&srsname=EPSG:31700&' +
-                'bbox=' +
-                extent.join(',') +
-                ',EPSG:31700'
-            );
-        },
+        url: 'https://cadsysdj.terra-apps.com/AdminApi/wfs.php?layername=intersectii_dr',
         strategy: bboxStrategy,
     }),
     style: layersStyle
@@ -424,16 +358,7 @@ let acostamente = new VectorLayer({
     visible: false,
     source: new VectorSource({
         format: new GeoJSON(),
-        url: function (extent) {
-            return (
-                'http://localhost/geoserver/wfs?service=WFS&' +
-                'version=1.1.0&request=GetFeature&typename=Alexanduru:limite_pug_bacau&' +
-                'outputFormat=application/json&srsname=EPSG:31700&' +
-                'bbox=' +
-                extent.join(',') +
-                ',EPSG:31700'
-            );
-        },
+        url: 'https://cadsysdj.terra-apps.com/AdminApi/wfs.php?layername=limite_pug_bacau',
         strategy: bboxStrategy,
     }),
     style: new Style({
@@ -450,16 +375,7 @@ let acostamente = new VectorLayer({
     visible: false,
     source: new VectorSource({
         format: new GeoJSON(),
-        url: function (extent) {
-            return (
-                'http://localhost/geoserver/wfs?service=WFS&' +
-                'version=1.1.0&request=GetFeature&typename=Alexanduru:limite_uat_bacau&' +
-                'outputFormat=application/json&srsname=EPSG:31700&' +
-                'bbox=' +
-                extent.join(',') +
-                ',EPSG:31700'
-            );
-        },
+        url: 'https://cadsysdj.terra-apps.com/AdminApi/wfs.php?layername=limite_uat_bacau',
         strategy: bboxStrategy,
     }),
     style: new Style({
@@ -476,16 +392,7 @@ let acostamente = new VectorLayer({
     visible: false,
     source: new VectorSource({
         format: new GeoJSON(),
-        url: function (extent) {
-            return (
-                'http://localhost/geoserver/wfs?service=WFS&' +
-                'version=1.1.0&request=GetFeature&typename=Alexanduru:localitati_traversate&' +
-                'outputFormat=application/json&srsname=EPSG:31700&' +
-                'bbox=' +
-                extent.join(',') +
-                ',EPSG:31700'
-            );
-        },
+        url: 'https://cadsysdj.terra-apps.com/AdminApi/wfs.php?layername=localitati_traversate',
         strategy: bboxStrategy,
     }),
     style: new Style({
@@ -502,16 +409,7 @@ let acostamente = new VectorLayer({
     visible: false,
     source: new VectorSource({
         format: new GeoJSON(),
-        url: function (extent) {
-            return (
-                'http://localhost/geoserver/wfs?service=WFS&' +
-                'version=1.1.0&request=GetFeature&typename=Alexanduru:parapete&' +
-                'outputFormat=application/json&srsname=EPSG:31700&' +
-                'bbox=' +
-                extent.join(',') +
-                ',EPSG:31700'
-            );
-        },
+        url: 'https://cadsysdj.terra-apps.com/AdminApi/wfs.php?layername=parapete',
         strategy: bboxStrategy,
     }),
     style: new Style({
@@ -528,16 +426,7 @@ let acostamente = new VectorLayer({
     visible: false,
     source: new VectorSource({
         format: new GeoJSON(),
-        url: function (extent) {
-            return (
-                'http://localhost/geoserver/wfs?service=WFS&' +
-                'version=1.1.0&request=GetFeature&typename=Alexanduru:podete&' +
-                'outputFormat=application/json&srsname=EPSG:31700&' +
-                'bbox=' +
-                extent.join(',') +
-                ',EPSG:31700'
-            );
-        },
+        url: 'https://cadsysdj.terra-apps.com/AdminApi/wfs.php?layername=podete',
         strategy: bboxStrategy,
     }),
     style: layersStyle
@@ -546,16 +435,7 @@ let acostamente = new VectorLayer({
     visible: false,
     source: new VectorSource({
         format: new GeoJSON(),
-        url: function (extent) {
-            return (
-                'http://localhost/geoserver/wfs?service=WFS&' +
-                'version=1.1.0&request=GetFeature&typename=Alexanduru:poduri_&' +
-                'outputFormat=application/json&srsname=EPSG:31700&' +
-                'bbox=' +
-                extent.join(',') +
-                ',EPSG:31700'
-            );
-        },
+        url: 'https://cadsysdj.terra-apps.com/AdminApi/wfs.php?layername=poduri_',
         strategy: bboxStrategy,
     }),
     style: new Style({
@@ -572,16 +452,7 @@ let acostamente = new VectorLayer({
     visible: false,
     source: new VectorSource({
         format: new GeoJSON(),
-        url: function (extent) {
-            return (
-                'http://localhost/geoserver/wfs?service=WFS&' +
-                'version=1.1.0&request=GetFeature&typename=Alexanduru:santuri&' +
-                'outputFormat=application/json&srsname=EPSG:31700&' +
-                'bbox=' +
-                extent.join(',') +
-                ',EPSG:31700'
-            );
-        },
+        url: 'https://cadsysdj.terra-apps.com/AdminApi/wfs.php?layername=santuri',
         strategy: bboxStrategy,
     }),
     style: new Style({
@@ -598,16 +469,7 @@ let acostamente = new VectorLayer({
     visible: false,
     source: new VectorSource({
         format: new GeoJSON(),
-        url: function (extent) {
-            return (
-                'http://localhost/geoserver/wfs?service=WFS&' +
-                'version=1.1.0&request=GetFeature&typename=Alexanduru:traseu_info&' +
-                'outputFormat=application/json&srsname=EPSG:31700&' +
-                'bbox=' +
-                extent.join(',') +
-                ',EPSG:31700'
-            );
-        },
+        url: 'https://cadsysdj.terra-apps.com/AdminApi/wfs.php?layername=traseu_info',
         strategy: bboxStrategy,
     }),
     style: new Style({
@@ -624,16 +486,7 @@ let acostamente = new VectorLayer({
     visible: false,
     source: new VectorSource({
         format: new GeoJSON(),
-        url: function (extent) {
-            return (
-                'http://localhost/geoserver/wfs?service=WFS&' +
-                'version=1.1.0&request=GetFeature&typename=Alexanduru:zid_sprijin&' +
-                'outputFormat=application/json&srsname=EPSG:31700&' +
-                'bbox=' +
-                extent.join(',') +
-                ',EPSG:31700'
-            );
-        },
+        url: 'https://cadsysdj.terra-apps.com/AdminApi/wfs.php?layername=zid_sprijin',
         strategy: bboxStrategy,
     }),
     style: new Style({
