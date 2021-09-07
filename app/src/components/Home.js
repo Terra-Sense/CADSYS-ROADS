@@ -262,7 +262,7 @@ let acostamente = new VectorLayer({
     visible: false,
     source: new VectorSource({
         format: new GeoJSON(),
-        url: 'https://cadsysdj.terra-apps.com/AdminApi/wfs.php?layername=acostamente',
+        url: '../AdminApi/wfs.php?layername=acostamente',
         strategy: bboxStrategy,
     }),
     style: new Style({
@@ -279,7 +279,7 @@ let acostamente = new VectorLayer({
     visible: false,
     source: new VectorSource({
         format: new GeoJSON(),
-        url: 'https://cadsysdj.terra-apps.com/AdminApi/wfs.php?layername=anexe_and',
+        url: '../AdminApi/wfs.php?layername=anexe_and',
         strategy: bboxStrategy,
     }),
     style: new Style({
@@ -296,7 +296,7 @@ let acostamente = new VectorLayer({
     visible: false,
     source: new VectorSource({
         format: new GeoJSON(),
-        url: 'https://cadsysdj.terra-apps.com/AdminApi/wfs.php?layername=borne_estimate',
+        url: '../AdminApi/wfs.php?layername=borne_estimate',
         strategy: bboxStrategy,
     }),
     style: layersStyle
@@ -305,7 +305,7 @@ let acostamente = new VectorLayer({
     visible: false,
     source: new VectorSource({
         format: new GeoJSON(),
-        url: 'https://cadsysdj.terra-apps.com/AdminApi/wfs.php?layername=borne_existente',
+        url: '../AdminApi/wfs.php?layername=borne_existente',
         strategy: bboxStrategy,
     }),
     style: layersStyle
@@ -314,7 +314,7 @@ let acostamente = new VectorLayer({
     visible: false,
     source: new VectorSource({
         format: new GeoJSON(),
-        url: 'https://cadsysdj.terra-apps.com/AdminApi/wfs.php?layername=imbracaminte_drum',
+        url: '../AdminApi/wfs.php?layername=imbracaminte_drum',
         strategy: bboxStrategy,
     }),
     style: new Style({
@@ -331,7 +331,7 @@ let acostamente = new VectorLayer({
     visible: false,
     source: new VectorSource({
         format: new GeoJSON(),
-        url: 'https://cadsysdj.terra-apps.com/AdminApi/wfs.php?layername=indicatoare_rutiere',
+        url: '../AdminApi/wfs.php?layername=indicatoare_rutiere',
         strategy: bboxStrategy,
     }),
     style: layersStyle
@@ -340,7 +340,7 @@ let acostamente = new VectorLayer({
     visible: false,
     source: new VectorSource({
         format: new GeoJSON(),
-        url: 'https://cadsysdj.terra-apps.com/AdminApi/wfs.php?layername=intersectii_cfr',
+        url: '../AdminApi/wfs.php?layername=intersectii_cfr',
         strategy: bboxStrategy,
     }),
     style: layersStyle
@@ -349,7 +349,7 @@ let acostamente = new VectorLayer({
     visible: false,
     source: new VectorSource({
         format: new GeoJSON(),
-        url: 'https://cadsysdj.terra-apps.com/AdminApi/wfs.php?layername=intersectii_dr',
+        url: '../AdminApi/wfs.php?layername=intersectii_dr',
         strategy: bboxStrategy,
     }),
     style: layersStyle
@@ -358,7 +358,7 @@ let acostamente = new VectorLayer({
     visible: false,
     source: new VectorSource({
         format: new GeoJSON(),
-        url: 'https://cadsysdj.terra-apps.com/AdminApi/wfs.php?layername=limite_pug_bacau',
+        url: '../AdminApi/wfs.php?layername=limite_pug_bacau',
         strategy: bboxStrategy,
     }),
     style: new Style({
@@ -375,7 +375,7 @@ let acostamente = new VectorLayer({
     visible: false,
     source: new VectorSource({
         format: new GeoJSON(),
-        url: 'https://cadsysdj.terra-apps.com/AdminApi/wfs.php?layername=limite_uat_bacau',
+        url: '../AdminApi/wfs.php?layername=limite_uat_bacau',
         strategy: bboxStrategy,
     }),
     style: new Style({
@@ -392,7 +392,7 @@ let acostamente = new VectorLayer({
     visible: false,
     source: new VectorSource({
         format: new GeoJSON(),
-        url: 'https://cadsysdj.terra-apps.com/AdminApi/wfs.php?layername=localitati_traversate',
+        url: '../AdminApi/wfs.php?layername=localitati_traversate',
         strategy: bboxStrategy,
     }),
     style: new Style({
@@ -409,7 +409,7 @@ let acostamente = new VectorLayer({
     visible: false,
     source: new VectorSource({
         format: new GeoJSON(),
-        url: 'https://cadsysdj.terra-apps.com/AdminApi/wfs.php?layername=parapete',
+        url: '../AdminApi/wfs.php?layername=parapete',
         strategy: bboxStrategy,
     }),
     style: new Style({
@@ -426,7 +426,7 @@ let acostamente = new VectorLayer({
     visible: false,
     source: new VectorSource({
         format: new GeoJSON(),
-        url: 'https://cadsysdj.terra-apps.com/AdminApi/wfs.php?layername=podete',
+        url: '../AdminApi/wfs.php?layername=podete',
         strategy: bboxStrategy,
     }),
     style: layersStyle
@@ -435,7 +435,7 @@ let acostamente = new VectorLayer({
     visible: false,
     source: new VectorSource({
         format: new GeoJSON(),
-        url: 'https://cadsysdj.terra-apps.com/AdminApi/wfs.php?layername=poduri_',
+        url: '../AdminApi/wfs.php?layername=poduri_',
         strategy: bboxStrategy,
     }),
     style: new Style({
@@ -452,7 +452,7 @@ let acostamente = new VectorLayer({
     visible: false,
     source: new VectorSource({
         format: new GeoJSON(),
-        url: 'https://cadsysdj.terra-apps.com/AdminApi/wfs.php?layername=santuri',
+        url: '../AdminApi/wfs.php?layername=santuri',
         strategy: bboxStrategy,
     }),
     style: new Style({
@@ -469,7 +469,7 @@ let acostamente = new VectorLayer({
     visible: false,
     source: new VectorSource({
         format: new GeoJSON(),
-        url: 'https://cadsysdj.terra-apps.com/AdminApi/wfs.php?layername=traseu_info',
+        url: '../AdminApi/wfs.php?layername=traseu_info',
         strategy: bboxStrategy,
     }),
     style: new Style({
@@ -486,7 +486,7 @@ let acostamente = new VectorLayer({
     visible: false,
     source: new VectorSource({
         format: new GeoJSON(),
-        url: 'https://cadsysdj.terra-apps.com/AdminApi/wfs.php?layername=zid_sprijin',
+        url: '../AdminApi/wfs.php?layername=zid_sprijin',
         strategy: bboxStrategy,
     }),
     style: new Style({
