@@ -1,7 +1,6 @@
 import React, { useContext, useState, useEffect, useRef } from 'react'
 import { MyContext } from '../contexts/MyContext'
 import 'bootstrap/dist/css/bootstrap.min.css';
-import axios from 'axios';
 
 // Importing the Login & Register Componet
 import Login from './Login'
@@ -66,11 +65,6 @@ import GeolocationButton from "ol-ext/control/GeolocationButton";
 import 'ol/ol.css';
 import 'ol-ext/dist/ol-ext.css'
 import './style.css'
-
-// Define the base URL
-const Axios = axios.create({
-    baseURL: 'http://localhost/AdminApi/',
-});
 
 var mapboxKey = "pk.eyJ1IjoiZGh5ZmIiLCJhIjoiY2o4M3F6MzJpMDBoejMybXBhZGF4aXJjOCJ9.rqAE8kSRfPbAdypH3Ydx-g";
 
@@ -737,26 +731,19 @@ function Home() {
                 new TileLayer({
                     baseLayer: true,
                     title: "OSM",
-                    visible: false,
+                    visible: true,
                     source: new OSM()
                 }),
                 new TileLayer({
                     baseLayer: true,
-                    title: "Mapbox",
-                    visible: true,
-                    source: new XYZ({
-                        tileSize: [512, 512],
-                        url: 'https://api.mapbox.com/styles/v1/mapbox/streets-v8/tiles/{z}/{x}/{y}?access_token=' + mapboxKey
-                    })
-                }),
-                new TileLayer({
-                    title: "Bing",
-                    baseLayer: true,
+                    title: "ESRI",
                     visible: false,
-                    preload: Infinity,
-                    source: new BingMaps({
-                        key: 'Ai9y3x8v0FM1vGDUXevZDinOzkJVacIW8kJOtSwUDNn8WGpE0ZjxZPJttvIYZg5L',
-                        imagerySet: "AerialWithLabels"
+                    source: new XYZ({
+                        attributions: ['Powered by Esri',
+                            'Source: Esri, DigitalGlobe, GeoEye, Earthstar Geographics, CNES/Airbus DS, USDA, USGS, AeroGRID, IGN, and the GIS User Community'],
+                        attributionsCollapsible: true,
+                        url: 'https://services.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}',
+                        maxZoom: 16
                     }),
                 })
             ]

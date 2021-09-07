@@ -4,7 +4,8 @@ export const MyContext = createContext();
 
 // Define the base URL
 const Axios = axios.create({
-    baseURL: '../AdminApi/',
+    baseURL: '../AdminApi/', //for server
+    // baseURL: 'http://localhost/AdminApi/', //for local
 });
 
 class MyContextProvider extends Component{
